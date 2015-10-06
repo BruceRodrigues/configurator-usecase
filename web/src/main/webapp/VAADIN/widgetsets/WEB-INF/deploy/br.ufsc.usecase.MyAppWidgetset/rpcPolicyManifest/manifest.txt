@@ -1,0 +1,2 @@
+# Module br.ufsc.usecase.MyAppWidgetset
+# RPC service class, partial path of RPC policy file
