@@ -31,6 +31,10 @@
 
 @mixin mytheme {
   @include valo;
+  
+  .v-select-optiongroup {
+  	    display: -webkit-inline-box;
+  }
+  
 
-  // Insert your own theme rules here
 }

@@ -6,6 +6,7 @@ import br.ufsc.configurator.api.field.factory.BaseFactory;
 import br.ufsc.configurator.api.field.factory.LayoutFactory;
 import br.ufsc.usecase.factories.ReportLayoutFactory;
 import br.ufsc.usecase.factories.ReportPanelFactory;
+import br.ufsc.usecase.factories.ReportRadioFactory;
 import br.ufsc.usecase.factories.ReportTextFieldFactory;
 
 @SuppressWarnings("rawtypes")
@@ -16,6 +17,8 @@ public class ReportConfiguration implements ViewConfiguration {
 	private static ReportTextFieldFactory textFieldFactory = new ReportTextFieldFactory();
 
 	private static ReportPanelFactory<?> panelFactory = new ReportPanelFactory<>();
+
+	private static ReportRadioFactory radioFactory = new ReportRadioFactory();
 
 	private static ReportConfiguration instance;
 
@@ -43,6 +46,8 @@ public class ReportConfiguration implements ViewConfiguration {
 			return textFieldFactory;
 		case PANEL:
 			return panelFactory;
+		case RADIO:
+			return radioFactory;
 		default:
 			return null;
 		}
