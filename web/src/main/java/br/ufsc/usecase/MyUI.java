@@ -42,7 +42,7 @@ public class MyUI extends UI {
 
 		userView = new UserConfiguratorView();
 		layout.addComponent(
-				(Component) userView.generateView(VaadinConfiguration.getInstance(), "1000px").getComponent());
+				userView.generateView(VaadinConfiguration.getInstance(), "1000px", Component.class).getComponent());
 
 		Button printButton = new Button("Imprimir");
 		printButton.addClickListener(new ClickListener() {
@@ -61,7 +61,7 @@ public class MyUI extends UI {
 
 	public void onPrintClick() {
 		JasperReportBuilder report = DynamicReports.report();
-		report.addDetail((ComponentBuilder) this.userView.generateView(ReportConfiguration.getInstance(), "570px")
+		report.addDetail(this.userView.generateView(ReportConfiguration.getInstance(), "570px", ComponentBuilder.class)
 				.getComponent());
 		this.buildImprimirWindow(JasperReportHelper.buildReport(report));
 	}

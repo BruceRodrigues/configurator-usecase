@@ -5,6 +5,7 @@ import br.ufsc.configurator.api.field.ViewConfiguration;
 import br.ufsc.configurator.api.field.factory.BaseFactory;
 import br.ufsc.configurator.api.field.factory.LayoutFactory;
 import br.ufsc.usecase.factories.ReportLayoutFactory;
+import br.ufsc.usecase.factories.ReportPanelFactory;
 import br.ufsc.usecase.factories.ReportTextFieldFactory;
 
 @SuppressWarnings("rawtypes")
@@ -13,6 +14,8 @@ public class ReportConfiguration implements ViewConfiguration {
 	private static ReportLayoutFactory layoutFactory = new ReportLayoutFactory();
 
 	private static ReportTextFieldFactory textFieldFactory = new ReportTextFieldFactory();
+
+	private static ReportPanelFactory<?> panelFactory = new ReportPanelFactory<>();
 
 	private static ReportConfiguration instance;
 
@@ -38,6 +41,8 @@ public class ReportConfiguration implements ViewConfiguration {
 		case LABEL:
 		case TITLE:
 			return textFieldFactory;
+		case PANEL:
+			return panelFactory;
 		default:
 			return null;
 		}

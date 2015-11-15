@@ -11,15 +11,9 @@ public class UserForm implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String firstName;
-
-	private String lastName;
-
-	private String cpf;
+	private InformacoesPessoaisForm informacoesPessoais;
 
 	private String cep;
-
-	private Sexo sexo;
 
 	private String uf;
 

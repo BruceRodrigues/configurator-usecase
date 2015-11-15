@@ -5,6 +5,7 @@ import br.ufsc.configurator.api.field.ViewConfiguration;
 import br.ufsc.configurator.api.field.factory.BaseFactory;
 import br.ufsc.configurator.api.field.factory.LayoutFactory;
 import br.ufsc.usecase.factories.VaadinLayoutFactory;
+import br.ufsc.usecase.factories.VaadinPanelFactory;
 import br.ufsc.usecase.factories.VaadinTextFieldFactory;
 
 public class VaadinConfiguration implements ViewConfiguration {
@@ -12,6 +13,8 @@ public class VaadinConfiguration implements ViewConfiguration {
 	private static VaadinTextFieldFactory textFieldFactory = new VaadinTextFieldFactory();
 
 	private static VaadinLayoutFactory layoutFactory = new VaadinLayoutFactory();
+
+	private static VaadinPanelFactory<?> panelFactory = new VaadinPanelFactory<>();
 
 	private static VaadinConfiguration instance;
 
@@ -35,6 +38,8 @@ public class VaadinConfiguration implements ViewConfiguration {
 		switch (type) {
 		case TEXTFIELD:
 			return textFieldFactory;
+		case PANEL:
+			return panelFactory;
 		default:
 			return null;
 		}

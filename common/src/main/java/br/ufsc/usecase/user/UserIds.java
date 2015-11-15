@@ -9,5 +9,6 @@ public class UserIds {
 	public static final String UF = "uf";
 	public static final String MUNICIPIO = "municipio";
 	public static final String LOGRADOURO = "logradouro";
+	public static final String INFORMACOES_PESSOAIS = "informacoes_pessoais";
 
 }
