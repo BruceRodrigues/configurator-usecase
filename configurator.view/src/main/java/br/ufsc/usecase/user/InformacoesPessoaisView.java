@@ -1,6 +1,7 @@
 package br.ufsc.usecase.user;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 import br.ufsc.configurator.api.ConfigOptions;
 import br.ufsc.configurator.api.field.ConfigField;
@@ -24,7 +25,10 @@ public class InformacoesPessoaisView
 		this.config.addComponent(this.createTextField(2, UserIds.CPF, "CPF:"));
 
 		ConfigRadio configRadio = new ConfigRadio(3, 0, UserIds.SEXO, "Sexo:", "100%", true);
-		configRadio.setValues(Arrays.asList("Masculino", "Feminino"));
+		List<Object> values = new ArrayList<Object>();
+		values.add("Masculino");
+		values.add("Feminino");
+		configRadio.setValues(values);
 		this.config.addComponent(configRadio);
 	}
 
