@@ -49,6 +49,8 @@ public class MyUI extends UI {
 		Component component = this.userView.generateView(VaadinConfiguration.getInstance(), "250px", Component.class)
 				.getComponent();
 
+		this.setValues();
+
 		Panel panel = new Panel("Informações Pessoais");
 		panel.setWidthUndefined();
 		panel.setContent(component);
@@ -76,7 +78,6 @@ public class MyUI extends UI {
 		layout.setComponentAlignment(printButton, Alignment.MIDDLE_CENTER);
 		this.setContent(layout);
 
-		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce Rodrigues");
 	}
 
 	public void onPrintClick() {
@@ -86,10 +87,18 @@ public class MyUI extends UI {
 		panel.add(this.userView.generateView(ReportConfiguration.getInstance(), "570px", ComponentBuilder.class)
 				.getComponent());
 
-		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce Rodrigues");
+		this.setValues();
 
 		report.addDetail(panel);
 		this.buildImprimirWindow(JasperReportHelper.buildReport(report));
+	}
+
+	private void setValues() {
+		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce");
+		this.userView.setFieldValue(UserIds.LAST_NAME, "Rodrigues");
+		this.userView.setFieldValue(UserIds.CPF, "012.123.456-78");
+		this.userView.setFieldValue(UserIds.SEXO, "Masculino");
+
 	}
 
 	public void buildImprimirWindow(final byte[] source) {

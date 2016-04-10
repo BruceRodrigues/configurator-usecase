@@ -21,9 +21,9 @@ public class UserConfiguratorView extends BaseConfigurableViewImpl {
 	public void configView() {
 		this.config.addComponent(this.createTextField(0, UserIds.FIRST_NAME, "Primeiro nome:"));
 		this.config.addComponent(this.createTextField(1, UserIds.LAST_NAME, "Último nome:"));
-		this.config.addComponent(this.createTextField(3, UserIds.CPF, "CPF:"));
+		this.config.addComponent(this.createTextField(2, UserIds.CPF, "CPF:"));
 
-		ConfigRadio configRadio = new ConfigRadio(4, 0, UserIds.SEXO, "Sexo:", "100%", true);
+		ConfigRadio configRadio = new ConfigRadio(3, 0, UserIds.SEXO, "Sexo:", "100%", true);
 		List<Object> values = new ArrayList<Object>();
 		values.add("Masculino");
 		values.add("Feminino");
