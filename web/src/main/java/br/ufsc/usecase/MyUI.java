@@ -12,20 +12,25 @@ import com.vaadin.server.StreamResource;
 import com.vaadin.server.StreamResource.StreamSource;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.Embedded;
+import com.vaadin.ui.Panel;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import br.ufsc.usecase.user.UserConfiguratorView;
+import br.ufsc.usecase.user.UserIds;
 import br.ufsc.usecase.utils.JasperReportHelper;
+import br.ufsc.usecase.utils.ReportPanel;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
 import net.sf.dynamicreports.report.builder.DynamicReports;
 import net.sf.dynamicreports.report.builder.component.ComponentBuilder;
+import net.sf.dynamicreports.report.builder.component.HorizontalListBuilder;
 
 @Theme("mytheme")
 @Widgetset("br.ufsc.usecase.MyAppWidgetset")
@@ -40,29 +45,50 @@ public class MyUI extends UI {
 		final VerticalLayout layout = new VerticalLayout();
 		layout.setMargin(true);
 
-		userView = new UserConfiguratorView();
-		layout.addComponent(
-				userView.generateView(VaadinConfiguration.getInstance(), "1000px", Component.class).getComponent());
+		this.userView = new UserConfiguratorView();
+		Component component = this.userView.generateView(VaadinConfiguration.getInstance(), "250px", Component.class)
+				.getComponent();
 
+		Panel panel = new Panel("Informações Pessoais");
+		panel.setWidthUndefined();
+		panel.setContent(component);
+
+		layout.addComponent(panel);
+		layout.setComponentAlignment(panel, Alignment.MIDDLE_CENTER);
+
+		Button saveButton = new Button("Salvar");
+		saveButton.setWidth("250px");
 		Button printButton = new Button("Imprimir");
+		printButton.setWidth("250px");
 		printButton.addClickListener(new ClickListener() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public void buttonClick(ClickEvent event) {
-				onPrintClick();
+				MyUI.this.onPrintClick();
 			}
 		});
 
+		layout.addComponent(saveButton);
+		layout.setComponentAlignment(saveButton, Alignment.MIDDLE_CENTER);
 		layout.addComponent(printButton);
-		setContent(layout);
+		layout.setComponentAlignment(printButton, Alignment.MIDDLE_CENTER);
+		this.setContent(layout);
+
+		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce Rodrigues");
 	}
 
 	public void onPrintClick() {
 		JasperReportBuilder report = DynamicReports.report();
-		report.addDetail(this.userView.generateView(ReportConfiguration.getInstance(), "570px", ComponentBuilder.class)
+
+		HorizontalListBuilder panel = ReportPanel.createPanel("Informações Pessoais");
+		panel.add(this.userView.generateView(ReportConfiguration.getInstance(), "570px", ComponentBuilder.class)
 				.getComponent());
+
+		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce Rodrigues");
+
+		report.addDetail(panel);
 		this.buildImprimirWindow(JasperReportHelper.buildReport(report));
 	}
 

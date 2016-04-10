@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.RelativeLayout;
 
 import br.ufsc.usecase.user.UserConfiguratorView;
 import usecase.ufsc.br.usecaseandroid.configuration.AndroidConfiguration;
@@ -21,19 +22,9 @@ public class MainActivity extends AppCompatActivity {
 
         UserConfiguratorView userView = new UserConfiguratorView();
         AndroidConfiguration.getInstance().setCurrentContext(this.getApplicationContext());
-
-        setContentView(userView.generateView(AndroidConfiguration.getInstance(), "100", View.class).getComponent());
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
-//
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
+        this.setContentView(R.layout.activity_main);
+        RelativeLayout relative = (RelativeLayout) this.findViewById(R.id.content);
+        relative.addView(userView.generateView(AndroidConfiguration.getInstance(), "100", View.class).getComponent());
     }
 
     @Override
