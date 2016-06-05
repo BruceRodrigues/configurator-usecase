@@ -25,6 +25,14 @@ public class MainActivity extends AppCompatActivity {
         this.setContentView(R.layout.activity_main);
         RelativeLayout relative = (RelativeLayout) this.findViewById(R.id.content);
         relative.addView(userView.generateView(AndroidConfiguration.getInstance(), "100", View.class).getComponent());
+
+        Toolbar t = (Toolbar) this.findViewById(R.id.toolbar);
+        t.setTitle("Informações Pessoais");
+
+//        userView.setFieldValue("first-name", "Bruce");
+//        userView.setFieldValue("last-name", "Rodrigues");
+//        userView.setFieldValue("cpf", "012.123.456-78");
+//        userView.setFieldValue("sexo", "Masculino");
     }
 
     @Override

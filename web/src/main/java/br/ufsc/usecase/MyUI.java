@@ -24,7 +24,6 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import br.ufsc.usecase.user.UserConfiguratorView;
-import br.ufsc.usecase.user.UserIds;
 import br.ufsc.usecase.utils.JasperReportHelper;
 import br.ufsc.usecase.utils.ReportPanel;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
@@ -84,7 +83,8 @@ public class MyUI extends UI {
 		JasperReportBuilder report = DynamicReports.report();
 
 		HorizontalListBuilder panel = ReportPanel.createPanel("Informações Pessoais");
-		panel.add(this.userView.generateView(ReportConfiguration.getInstance(), "570px", ComponentBuilder.class)
+		panel.setWidth(250);
+		panel.add(this.userView.generateView(ReportConfiguration.getInstance(), "500px", ComponentBuilder.class)
 				.getComponent());
 
 		this.setValues();
@@ -94,10 +94,10 @@ public class MyUI extends UI {
 	}
 
 	private void setValues() {
-		this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce");
-		this.userView.setFieldValue(UserIds.LAST_NAME, "Rodrigues");
-		this.userView.setFieldValue(UserIds.CPF, "012.123.456-78");
-		this.userView.setFieldValue(UserIds.SEXO, "Masculino");
+		// this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce");
+		// this.userView.setFieldValue(UserIds.LAST_NAME, "Rodrigues");
+		// this.userView.setFieldValue(UserIds.CPF, "012.123.456-78");
+		// this.userView.setFieldValue(UserIds.SEXO, "Masculino");
 
 	}
 

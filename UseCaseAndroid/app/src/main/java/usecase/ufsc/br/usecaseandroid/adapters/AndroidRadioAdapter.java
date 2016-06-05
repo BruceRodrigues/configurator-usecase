@@ -4,6 +4,9 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import br.ufsc.configurator.api.adapter.RadioAdapter;
 
 /**
@@ -13,13 +16,17 @@ public class AndroidRadioAdapter implements RadioAdapter<RadioGroup> {
 
     private RadioGroup component;
 
-    public AndroidRadioAdapter(RadioGroup button) {
+    private Map<String, RadioButton> buttons = new HashMap<String, RadioButton>();
+
+    public AndroidRadioAdapter(RadioGroup button, Map<String, RadioButton> buttons) {
         this.component = button;
+        this.buttons = buttons;
     }
 
     @Override
     public void setValue(Object o) {
-        this.component.setActivated((Boolean) o);
+
+        this.buttons.get(o.toString()).setChecked(true);
     }
 
     @Override
