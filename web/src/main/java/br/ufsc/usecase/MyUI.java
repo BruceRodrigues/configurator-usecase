@@ -2,6 +2,8 @@ package br.ufsc.usecase;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
 
@@ -24,6 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
 
 import br.ufsc.usecase.user.UserConfiguratorView;
+import br.ufsc.usecase.user.UserIds;
 import br.ufsc.usecase.utils.JasperReportHelper;
 import br.ufsc.usecase.utils.ReportPanel;
 import net.sf.dynamicreports.jasper.builder.JasperReportBuilder;
@@ -39,6 +42,8 @@ public class MyUI extends UI {
 
 	UserConfiguratorView userView;
 
+	private Map<String, Object> values = new HashMap<String, Object>();
+
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
 		final VerticalLayout layout = new VerticalLayout();
@@ -48,7 +53,7 @@ public class MyUI extends UI {
 		Component component = this.userView.generateView(VaadinConfiguration.getInstance(), "250px", Component.class)
 				.getComponent();
 
-		this.setValues();
+		// this.setValues();
 
 		Panel panel = new Panel("Informações Pessoais");
 		panel.setWidthUndefined();
@@ -82,23 +87,31 @@ public class MyUI extends UI {
 	public void onPrintClick() {
 		JasperReportBuilder report = DynamicReports.report();
 
+		// this.loadValues();
+
 		HorizontalListBuilder panel = ReportPanel.createPanel("Informações Pessoais");
 		panel.setWidth(250);
 		panel.add(this.userView.generateView(ReportConfiguration.getInstance(), "500px", ComponentBuilder.class)
 				.getComponent());
 
-		this.setValues();
+		// this.setValues();
 
 		report.addDetail(panel);
 		this.buildImprimirWindow(JasperReportHelper.buildReport(report));
 	}
 
 	private void setValues() {
-		// this.userView.setFieldValue(UserIds.FIRST_NAME, "Bruce");
-		// this.userView.setFieldValue(UserIds.LAST_NAME, "Rodrigues");
-		// this.userView.setFieldValue(UserIds.CPF, "012.123.456-78");
-		// this.userView.setFieldValue(UserIds.SEXO, "Masculino");
+		this.userView.setFieldValue(UserIds.FIRST_NAME, this.values.get(UserIds.FIRST_NAME));
+		this.userView.setFieldValue(UserIds.LAST_NAME, this.values.get(UserIds.LAST_NAME));
+		this.userView.setFieldValue(UserIds.CPF, this.values.get(UserIds.CPF));
+		this.userView.setFieldValue(UserIds.SEXO, this.values.get(UserIds.SEXO));
+	}
 
+	private void loadValues() {
+		this.values.put(UserIds.FIRST_NAME, this.userView.getFieldValue(UserIds.FIRST_NAME));
+		this.values.put(UserIds.LAST_NAME, this.userView.getFieldValue(UserIds.LAST_NAME));
+		this.values.put(UserIds.CPF, this.userView.getFieldValue(UserIds.CPF));
+		this.values.put(UserIds.SEXO, this.userView.getFieldValue(UserIds.SEXO));
 	}
 
 	public void buildImprimirWindow(final byte[] source) {

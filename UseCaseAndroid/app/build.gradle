@@ -23,6 +23,10 @@ android {
         }
     }
 
+    //repositories {
+    //    mavenLocal()
+    //}
+
 }
 
 dependencies {
@@ -30,6 +34,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
-    compile files('libs/configurator-1.0.jar')
+    //compile 'br.ufsc.usecase:configurator.view:1.0'
     compile files('libs/configurator.view-1.0.jar')
 }

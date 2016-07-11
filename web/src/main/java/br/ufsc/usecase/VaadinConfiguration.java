@@ -9,6 +9,7 @@ import br.ufsc.usecase.factories.VaadinPanelFactory;
 import br.ufsc.usecase.factories.VaadinRadioFactory;
 import br.ufsc.usecase.factories.VaadinTextFieldFactory;
 
+@SuppressWarnings("rawtypes")
 public class VaadinConfiguration implements ViewConfiguration {
 
 	private static VaadinTextFieldFactory textFieldFactory = new VaadinTextFieldFactory();

@@ -11,19 +11,20 @@ import br.ufsc.configurator.impl.BaseConfigurableViewImpl;
 
 public class UserConfiguratorView extends BaseConfigurableViewImpl {
 
-	private ConfigField createTextField(int line, String id, String caption) {
+	private ConfigField createTextField(String id, String caption) {
 		ConfigOptions options = new ConfigOptions();
 		options.caption = caption;
-		return new ConfigField(line, -1, id, options, ConfigFieldType.TEXTFIELD);
+		return new ConfigField(id, options, ConfigFieldType.TEXTFIELD);
 	}
 
 	@Override
 	public void configView() {
-		this.config.addComponent(this.createTextField(0, UserIds.FIRST_NAME, "Primeiro nome:"));
-		this.config.addComponent(this.createTextField(1, UserIds.LAST_NAME, "Último nome:"));
-		this.config.addComponent(this.createTextField(2, UserIds.CPF, "CPF:"));
+		this.config.addComponent(this.createTextField(UserIds.FIRST_NAME, "Primeiro nome:"));
+		this.config.addComponent(this.createTextField(UserIds.LAST_NAME, "Último nome:"));
+		this.config.addComponent(this.createTextField(UserIds.CPF, "CPF:"));
+		// this.config.addComponent(this.createTextField(UserIds.UF, "UF:"));
 
-		ConfigRadio configRadio = new ConfigRadio(3, 0, UserIds.SEXO, "Sexo:", "100%", true);
+		ConfigRadio configRadio = new ConfigRadio(UserIds.SEXO, "Sexo:", "100%", true);
 		List<Object> values = new ArrayList<Object>();
 		values.add("Masculino");
 		values.add("Feminino");
